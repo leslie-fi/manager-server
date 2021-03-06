@@ -1,0 +1,28 @@
+{
+  "name": "manager-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/Launcher.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leslie-fi/manager-server.git"
+  },
+  "keywords": [],
+  "author": "Leslie T",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leslie-fi/manager-server/issues"
+  },
+  "homepage": "https://github.com/leslie-fi/manager-server#readme",
+  "devDependencies": {
+    "@types/nedb": "^1.8.11",
+    "ts-node": "^9.1.1"
+  },
+  "dependencies": {
+    "@types/node": "^14.14.31",
+    "nedb": "^1.8.0"
+  }
+}
