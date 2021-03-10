@@ -5,9 +5,6 @@ export interface Account {
   password: string;
 }
 
-export interface Handler {
-  handleRequest(): void;
-}
 
 export interface SessionToken {
   tokenId: string;
@@ -17,6 +14,21 @@ export interface SessionToken {
   accessRights: AccessRights[];
 }
 
+export enum TokenState {
+  VALID,
+  INVALID,
+  EXPIRED
+}
+
+export interface TokenRights {
+  accessRights: AccessRights[];
+  state: TokenState;
+}
+
 export interface TokenGenerator {
   generateToken(account: Account): Promise<SessionToken | undefined>;
+}
+
+export interface TokenValidator {
+  validateToken(tokenId: string): Promise <TokenRights>;
 }

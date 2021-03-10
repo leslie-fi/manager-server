@@ -2,6 +2,34 @@ POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-  "username":"user1",
+  "username":"yoni1",
   "password":"password1"
+}
+###
+GET http://localhost:8080/users?id=1
+Content-Type: application/json
+Authorization: e2y5sszg6zn
+
+
+###
+DELETE http://localhost:8080/users?id=22
+Content-Type: application/json
+Authorization: 87nxpdj17jd
+
+###
+GET http://localhost:8080/users?name=go
+Content-Type: application/json
+Authorization: xyr9mhy53b
+
+###
+
+PUT http://localhost:8080/users
+Content-Type: application/json
+Authorization: zwjs1bpmwb
+{
+  "name": "yoni",
+  "age": 22,
+  "email": "y0y0y0@lel.com",
+  "workingPosition": 4,
+  "id": "3"
 }
