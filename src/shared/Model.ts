@@ -4,7 +4,7 @@ export enum AccessRights {
   CREATE,
   READ,
   UPDATE,
-  DELETE
+  DELETE,
 }
 
 export interface UserCredentials extends Account {
@@ -24,14 +24,15 @@ export enum HTTP_METHODS {
   POST = 'POST',
   DELETE = 'DELETE',
   PUT = 'PUT',
+  OPTIONS = 'OPTIONS',
 }
 
 export interface User {
-  id: string,
-  name: string,
-  age: number,
-  email: string,
-  workingPosition: WorkingPosition
+  id: string;
+  name: string;
+  age: number;
+  email: string;
+  workingPosition: WorkingPosition;
 }
 
 export enum WorkingPosition {
@@ -39,5 +40,5 @@ export enum WorkingPosition {
   PROGRAMMER,
   ENGINEER,
   EXPERT,
-  MANAGER
+  MANAGER,
 }
