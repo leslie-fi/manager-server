@@ -6,11 +6,7 @@ import { Account, TokenGenerator } from './Model';
 export class LoginHandler extends BaseRequestHandler {
   private tokenGenerator: TokenGenerator;
 
-  public constructor(
-    req: IncomingMessage,
-    res: ServerResponse,
-    tokenGenerator: TokenGenerator
-  ) {
+  public constructor(req: IncomingMessage, res: ServerResponse, tokenGenerator: TokenGenerator) {
     super(req, res);
     this.tokenGenerator = tokenGenerator;
   }
@@ -20,8 +16,8 @@ export class LoginHandler extends BaseRequestHandler {
       case HTTP_METHODS.POST:
         await this.handlePost();
         break;
-        case HTTP_METHODS.OPTIONS:
-        this.res.writeHead(HTTP_STATUS.OK);
+      case HTTP_METHODS.OPTIONS:
+        await this.handleOptions();
         break;
       // case HTTP_METHODS.GET:
       // case HTTP_METHODS.DELETE:
@@ -31,11 +27,16 @@ export class LoginHandler extends BaseRequestHandler {
     }
   }
 
+  private async handleOptions() {
+    this.res.writeHead(HTTP_STATUS.OK);
+  }
+
   private async handlePost() {
     try {
       const body: Account = await this.getRequestBody();
       const sessionToken = await this.tokenGenerator.generateToken(body);
-      console.log(body, sessionToken);
+      console.log(`body:`, body);
+      console.log('sessionToken:', sessionToken);
       if (sessionToken) {
         this.res.statusCode = HTTP_STATUS.CREATED;
         this.res.writeHead(HTTP_STATUS.CREATED, {

@@ -11,9 +11,8 @@ export abstract class BaseRequestHandler {
   }
   abstract handleRequest(): Promise<void>;
 
-  protected async handleNotFound() {
-    this.res.statusCode = HTTP_STATUS.NOT_FOUND;
-    this.res.write('404 RESOURCE NOT FOUND');
+  protected handleNotFound() {
+    this.res.write('', (err: Error | null | undefined) => console.error('handle not found err', err));
   }
 
   protected responseJsonObject(code: HTTP_STATUS, object: any) {
@@ -29,13 +28,13 @@ export abstract class BaseRequestHandler {
   }
 
   protected responseUnauthorized(message: string) {
-        this.res.statusCode = HTTP_STATUS.UNAUTHORIZED;
-        this.res.write(message);
+    this.res.statusCode = HTTP_STATUS.UNAUTHORIZED;
+    this.res.write(message);
   }
 
   protected responseText(code: HTTP_STATUS, message: string) {
-        this.res.statusCode = code;
-        this.res.write(message);
+    this.res.statusCode = code;
+    this.res.write(message);
   }
 
   protected async getRequestBody(): Promise<any> {
@@ -51,10 +50,10 @@ export abstract class BaseRequestHandler {
           reject(error);
         }
       });
-      // this.req.on('error', (error: any) => {
-      //   console.error(error.stack);
-      //   reject(error);
-      // });
+      this.req.on('error', (error: any) => {
+        console.error(error.stack);
+        // reject(error);
+      });
     });
   }
 }
